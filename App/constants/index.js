@@ -1,1 +1,1 @@
-export const SAVE_DATA = 'SAVE_DATA';
+export const SAVE_TRENDING_DATA = 'SAVE_TRENDING_DATA';

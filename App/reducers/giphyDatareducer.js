@@ -1,16 +1,16 @@
 import {
-    SAVE_DATA
+    SAVE_TRENDING_DATA
 } from '../constants';
 
 const initialState = {
-    data:""
+    trendingData: ""
 };
 const giphyDatareducer = (state = initialState, action) => {
     switch (action.type) {
-        case SAVE_DATA:
+        case SAVE_TRENDING_DATA:
             return {
                 ...state,
-                ...action.payload
+                trendingData: action.payload
             };
         default:
             return state;
