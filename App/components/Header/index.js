@@ -6,7 +6,7 @@ import styles from "./styles"
 const Header = ({
     title,
     onBackPress,
-    isBackVisible = true
+    isBackVisible = false
 }) => {
     return <View style={styles.headerContainer}>
         {isBackVisible && <Pressable
