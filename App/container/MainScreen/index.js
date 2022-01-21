@@ -6,11 +6,15 @@ import axios from "axios";
 import { SAVE_TRENDING_DATA } from "../../constants";
 
 import { useDispatch, useSelector } from "react-redux";
-
+import TrendingGifs from "../../components/TrendingGifs";
+import Header from "../../components/Header";
+import GifModal from "../../components/GifModal";
 const MainScreen = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const trending = useSelector(state => state.giphyData.trendingData);
+
+    const modalData = useSelector(state => state.giphyData.modalData);
+    const isVisible = useSelector(state => state.giphyData.isVisible);
 
     const getTrendingGifs = async () => {
         setIsLoading(true);
@@ -18,7 +22,7 @@ const MainScreen = (props) => {
             const response = await axios.get(`${BASE_URL}gifs/trending`, {
                 "params": {
                     "api_key": API_KEY,
-                    "limit": 20
+                    "limit": 15
                 },
             });;
 
@@ -30,7 +34,6 @@ const MainScreen = (props) => {
             // setError();
         }
     }
-    console.log(":: trending", trending)
     useEffect(() => {
         getTrendingGifs();
     }, []);
@@ -38,14 +41,21 @@ const MainScreen = (props) => {
     return <React.Fragment>
         <StatusBar backgroundColor={"#000"} />
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text>Hello</Text>
+            <Header
+                title={"Giphy"}
+                onBackPress={() => props.navigation.navigate("InitialScreen")} />
+            <View style={{ margin: 20 }}>
+                <TrendingGifs />
             </View>
             {isLoading ? (
                 <View style={styles.activityIndicator}>
                     <ActivityIndicator size="large" color={"#312F57"} />
                 </View>
             ) : null}
+            {isVisible && <GifModal
+                modalData={modalData}
+                isVisible={isVisible}
+            />}
         </SafeAreaView>
     </React.Fragment>
 };
