@@ -5,6 +5,9 @@ import styles from "./styles";
 import { useSelector } from 'react-redux';
 
 const InitialScreen = (props) => {
+    const userDetails = useSelector(state => state.userDetails);
+    const loggedIn = userDetails.isLoggedIn;
+    console.log(":::::: loggedIn", loggedIn)
     return <React.Fragment>
         <StatusBar backgroundColor={"#000"} />
         <SafeAreaView style={styles.container}>
@@ -15,10 +18,13 @@ const InitialScreen = (props) => {
             <View style={styles.buttonView}>
                 <Pressable
                     onPress={() => {
-                        props.navigation.navigate("MainScreen")
+                        if (loggedIn) {
+                            props.navigation.navigate("MainScreen")
+                        } else
+                            props.navigation.navigate("RegisterScreen")
                     }}
                     style={styles.button}>
-                    <Text style={styles.buttonText}>{"Get Started"}</Text>
+                    <Text style={styles.buttonText}>{loggedIn ? "Continue" : "Get Started"}</Text>
                 </Pressable>
             </View>
         </SafeAreaView>

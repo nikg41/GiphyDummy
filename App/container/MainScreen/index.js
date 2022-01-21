@@ -16,6 +16,11 @@ const MainScreen = (props) => {
 
     const modalData = useSelector(state => state.giphyData.modalData);
     const isVisible = useSelector(state => state.giphyData.isVisible);
+    const userDetails = useSelector(state => state.userDetails);
+    const loggedIn = userDetails.isLoggedIn;
+
+    console.log(":::::: loggedIn", loggedIn)
+
     const getTrendingGifs = async () => {
         setIsLoading(true);
         try {
@@ -57,6 +62,7 @@ const MainScreen = (props) => {
         <SafeAreaView style={styles.container}>
             <Header
                 title={"Giphy"}
+                isBackVisible={false}
                 onBackPress={() => props.navigation.navigate("InitialScreen")} />
             <View style={{ margin: 20 }}>
                 <TrendingGifs
