@@ -73,6 +73,7 @@ const TrendingStickersScreen = (props) => {
                 data={!isEmpty(trendingMoreStickers) ? trendingMoreStickers : []}
                 renderItem={({ item, index }) => renderItem(item)}
                 numColumns={3}
+                keyExtractor={(item, index) => item.id + index}
                 onEndReached={() => {
                     getTrendingGifs();
                 }}

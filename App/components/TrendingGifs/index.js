@@ -43,6 +43,7 @@ const TrendingGifs = (props) => {
             horizontal={true}
             data={!isEmpty(trending) ? trending : []}
             renderItem={({ item, index }) => renderItem(item)}
+            keyExtractor={(item, index) => item.id + index}
         />
     </View>
 };

@@ -43,6 +43,7 @@ const TrendingStickers = (props) => {
             horizontal={true}
             data={!isEmpty(trendingStickers) ? trendingStickers : []}
             renderItem={({ item, index }) => renderItem(item)}
+            keyExtractor={(item, index) => item.id + index}
         />
     </View>
 };
