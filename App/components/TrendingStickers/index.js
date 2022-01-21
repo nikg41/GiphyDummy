@@ -8,8 +8,8 @@ import GifImage from '@lowkey/react-native-gif';
 import { SAVE_MODAL_DATA } from "../../constants";
 
 
-const TrendingGifs = (props) => {
-    const trending = useSelector(state => state.giphyData.trendingData);
+const TrendingStickers = (props) => {
+    const trendingStickers = useSelector(state => state.giphyData.trendingStickers);
     const dispatch = useDispatch();
     const renderItem = (gif) => {
         let image = gif.images.preview_gif.url;
@@ -28,12 +28,12 @@ const TrendingGifs = (props) => {
         <View style={styles.container}>
             <View style={{ flexDirection: "row" }}>
                 <Icon name="chart-line-variant" size={22} color={"#59C6FA"} />
-                <Text style={styles.headerTitle}>Trending GIFS</Text>
+                <Text style={styles.headerTitle}>Trending Stickers</Text>
             </View>
             <Pressable
                 style={{ flexDirection: "row" }}
                 onPress={() => props.onMorePress()}>
-                <Text style={styles.more}>{"More gifs"}</Text>
+                <Text style={styles.more}>{"More Stickers"}</Text>
                 <Icon name="chevron-right" size={22} color={"#A6A6A6"} />
             </Pressable>
         </View>
@@ -41,10 +41,10 @@ const TrendingGifs = (props) => {
             style={{ marginTop: 15 }}
             showsHorizontalScrollIndicator={false}
             horizontal={true}
-            data={!isEmpty(trending) ? trending : []}
+            data={!isEmpty(trendingStickers) ? trendingStickers : []}
             renderItem={({ item, index }) => renderItem(item)}
         />
     </View>
 };
 
-export default TrendingGifs;
+export default TrendingStickers;

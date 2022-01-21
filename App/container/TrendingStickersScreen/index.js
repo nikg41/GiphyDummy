@@ -5,14 +5,15 @@ import { BASE_URL, API_KEY } from "../../Config";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles";
 import GifImage from '@lowkey/react-native-gif';
-import { SAVE_TRENDING_MORE_DATA, SAVE_MODAL_DATA, CLEAR_TRENDING_MORE_DATA } from "../../constants";
+import { SAVE_TRENDING_MORE_STICKERS, SAVE_MODAL_DATA, CLEAR_TRENDING_MORE_STICKERS } from "../../constants";
 import Header from "../../components/Header";
 import GifModal from "../../components/GifModal";
 import axios from "axios";
-const TrendingGifScreen = (props) => {
+
+const TrendingStickersScreen = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [offset, setoffset] = useState(0);
-    const trending = useSelector(state => state.giphyData.trendingMoreData);
+    const trendingMoreStickers = useSelector(state => state.giphyData.trendingMoreStickers);
     const modalData = useSelector(state => state.giphyData.modalData);
     const isVisible = useSelector(state => state.giphyData.isVisible);
     const dispatch = useDispatch();
@@ -20,14 +21,14 @@ const TrendingGifScreen = (props) => {
     const getTrendingGifs = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${BASE_URL}gifs/trending`, {
+            const response = await axios.get(`${BASE_URL}stickers/trending`, {
                 "params": {
                     "api_key": API_KEY,
                     "limit": 50,
                     "offset": offset
                 },
             });
-            dispatch({ type: SAVE_TRENDING_MORE_DATA, payload: response.data })
+            dispatch({ type: SAVE_TRENDING_MORE_STICKERS, payload: response.data })
             setIsLoading(false);
             setoffset((prev) => prev + 50)
         } catch (error) {
@@ -42,7 +43,7 @@ const TrendingGifScreen = (props) => {
 
     const onBackPress = () => {
         props.navigation.navigate("MainScreen");
-        dispatch({ type: CLEAR_TRENDING_MORE_DATA });
+        dispatch({ type: CLEAR_TRENDING_MORE_STICKERS });
     };
 
 
@@ -64,12 +65,12 @@ const TrendingGifScreen = (props) => {
         <StatusBar backgroundColor={"#000"} />
         <SafeAreaView style={styles.container}>
             <Header
-                title={"Trending Gifs"}
+                title={"Trending Stickers"}
                 onBackPress={() => onBackPress()} />
             <FlatList
                 style={{ marginTop: 15 }}
                 showsHorizontalScrollIndicator={false}
-                data={!isEmpty(trending) ? trending : []}
+                data={!isEmpty(trendingMoreStickers) ? trendingMoreStickers : []}
                 renderItem={({ item, index }) => renderItem(item)}
                 numColumns={3}
                 onEndReached={() => {
@@ -89,4 +90,4 @@ const TrendingGifScreen = (props) => {
     </React.Fragment>
 };
 
-export default TrendingGifScreen;
+export default TrendingStickersScreen;

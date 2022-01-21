@@ -3,21 +3,25 @@ import {
     SAVE_MODAL_DATA,
     CLEAR_MODAL_DATA,
     SAVE_TRENDING_MORE_DATA,
-    CLEAR_TRENDING_MORE_DATA
+    CLEAR_TRENDING_MORE_DATA,
+    SAVE_TRENDING_MORE_STICKERS,
+    CLEAR_TRENDING_MORE_STICKERS
 } from '../constants';
 
 const initialState = {
-    trendingData: {},
+    trendingData: [],
+    trendingStickers: [],
     modalData: "",
     isVisible: false,
-    trendingMoreData: []
+    trendingMoreData: [],
+    trendingMoreStickers: []
 };
 const giphyDatareducer = (state = initialState, action) => {
     switch (action.type) {
         case SAVE_TRENDING_DATA:
             return {
                 ...state,
-                trendingData: action.payload
+                ...action.payload
             };
         case SAVE_TRENDING_MORE_DATA:
             let data = state.trendingMoreData.concat(action.payload.data);
@@ -29,6 +33,17 @@ const giphyDatareducer = (state = initialState, action) => {
             return {
                 ...state,
                 trendingMoreData: []
+            };
+        case SAVE_TRENDING_MORE_STICKERS:
+            let stickerData = state.trendingMoreStickers.concat(action.payload.data);
+            return {
+                ...state,
+                trendingMoreStickers: stickerData
+            };
+        case CLEAR_TRENDING_MORE_STICKERS:
+            return {
+                ...state,
+                trendingMoreStickers: []
             };
         case SAVE_MODAL_DATA:
             return {
