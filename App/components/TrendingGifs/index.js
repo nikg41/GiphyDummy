@@ -12,10 +12,10 @@ const TrendingGifs = (props) => {
     const trending = useSelector(state => state.giphyData.trendingData);
     const dispatch = useDispatch();
     const renderItem = (gif) => {
-        let image = gif.images.original.url;
+        let image = gif.images.preview_gif.url;
         return <Pressable
             onPress={() => {
-                dispatch({ type: SAVE_MODAL_DATA, payload: image })
+                dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.original.url })
             }}>
             <GifImage
                 resizeMode='contain'
