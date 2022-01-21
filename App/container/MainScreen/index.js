@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, StatusBar, ActivityIndicator } from "react-native";
+import { SafeAreaView, Text, View, StatusBar, ActivityIndicator, BackHandler } from "react-native";
 import styles from "./styles";
 import { BASE_URL, API_KEY } from "../../Config";
 import axios from "axios";
@@ -54,12 +54,18 @@ const MainScreen = (props) => {
         }
     }
     useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", () => { return true; });
+
         getTrendingGifs();
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress", () => { return true; });
+        };
     }, []);
 
     return <React.Fragment>
-        <StatusBar backgroundColor={"#000"} />
+        <SafeAreaView style={styles.safeViewTop} />
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={"#000"} />
             <Header
                 title={"Giphy"}
                 isBackVisible={false}

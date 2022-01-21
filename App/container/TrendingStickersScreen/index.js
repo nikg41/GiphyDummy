@@ -1,6 +1,6 @@
 import { isEmpty } from "ramda";
 import React, { useEffect, useState } from "react";
-import { Pressable, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator } from "react-native";
+import { Pressable, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator, BackHandler } from "react-native";
 import { BASE_URL, API_KEY } from "../../Config";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles";
@@ -18,7 +18,7 @@ const TrendingStickersScreen = (props) => {
     const isVisible = useSelector(state => state.giphyData.isVisible);
     const dispatch = useDispatch();
 
-    const getTrendingGifs = async () => {
+    const getTrendingStickers = async () => {
         setIsLoading(true);
         try {
             const response = await axios.get(`${BASE_URL}stickers/trending`, {
@@ -38,7 +38,12 @@ const TrendingStickersScreen = (props) => {
         }
     };
     useEffect(() => {
-        getTrendingGifs();
+        BackHandler.addEventListener("hardwareBackPress", () => { return true; });
+
+        getTrendingStickers();
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress", () => { return true; });
+        };
     }, []);
 
     const onBackPress = () => {

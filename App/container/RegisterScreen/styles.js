@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
 
     termsView: {
-        marginTop: 18,
+        marginTop: 25,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center"
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         height: 45,
-        marginTop: 18,
+        marginTop: 25,
         borderColor: "#312F57",
         borderWidth: 2,
         borderRadius: 25
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         color: "#7F7F7F",
         marginLeft: 15,
         fontSize: 14,
-        marginTop: 10,
+        marginTop: 25,
         alignSelf: "center"
     },
 

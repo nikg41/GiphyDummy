@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View } from 'react-native';
 import InitialScreen from './container/InitialScreen';
 import MainScreen from './container/MainScreen';
 import TrendingGifScreen from './container/TrendingGifScreen';
@@ -8,70 +7,8 @@ import TrendingStickersScreen from './container/TrendingStickersScreen';
 import RegisterScreen from './container/RegisterScreen';
 import SignInScreen from './container/SignInScreen';
 import OtpScreen from "./container/OtpScreen";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useDispatch } from 'react-redux';
-import { LOGOUT } from './constants';
-const Tab = createBottomTabNavigator();
+
 const Stack = createNativeStackNavigator();
-const Logout = (props) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        props.navigation.navigate("MainScreen")
-        dispatch({ type: LOGOUT });
-        props.navigation.navigate("SignInScreen")
-    })
-    return null
-}
-const HomeStack = () => {
-    return (<Stack.Navigator
-        screenOptions={{
-            headerShown: false,
-            animationEnabled: false
-        }}
-    >
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="TrendingGifScreen" component={TrendingGifScreen} />
-        <Stack.Screen name="TrendingStickersScreen" component={TrendingStickersScreen} />
-
-    </Stack.Navigator>);
-}
-const TabNavigator = () => {
-    return (
-        <Tab.Navigator
-            tabBarOptions={{
-                activeTintColor: '#59C6FA',
-                inactiveTintColor: 'gray',
-                style: {
-                    backgroundColor: '#252525',//color you want to change
-                }
-            }}
-            screenOptions={({ route }) => ({
-                headerShown: false,
-                animationEnabled: false,
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
-                    if (route.name === 'Home') {
-                        iconName = focused
-                            ? 'home'
-                            : 'home-outline';
-                    } else if (route.name === 'Logout') {
-                        iconName = focused
-                            ? 'logout'
-                            : 'logout';
-                    }
-
-                    return <View style={{ margin: 4 }}><Icon name={iconName} size={size} color={color} /></View>;
-                },
-            })}>
-            <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen
-                name="Logout"
-                component={Logout} />
-        </Tab.Navigator>
-    );
-};
-
 
 function RootStack() {
     return (
@@ -85,7 +22,7 @@ function RootStack() {
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="OtpScreen" component={OtpScreen} />
-            <Stack.Screen name="MainScreen" component={TabNavigator} />
+            <Stack.Screen name="MainScreen" component={MainScreen} />
             <Stack.Screen name="TrendingGifScreen" component={TrendingGifScreen} />
             <Stack.Screen name="TrendingStickersScreen" component={TrendingStickersScreen} />
 
@@ -93,4 +30,4 @@ function RootStack() {
     );
 }
 
-export { RootStack, TabNavigator };
+export { RootStack };

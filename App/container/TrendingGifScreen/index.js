@@ -1,6 +1,6 @@
 import { isEmpty } from "ramda";
 import React, { useEffect, useState } from "react";
-import { Pressable, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator } from "react-native";
+import { Pressable, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator, BackHandler } from "react-native";
 import { BASE_URL, API_KEY } from "../../Config";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles";
@@ -37,7 +37,12 @@ const TrendingGifScreen = (props) => {
         }
     };
     useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", () => { return true; });
+
         getTrendingGifs();
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress", () => { return true; });
+        };
     }, []);
 
     const onBackPress = () => {
