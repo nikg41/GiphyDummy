@@ -1,9 +1,8 @@
 import React from "react";
-import { Pressable, Text, View, Modal } from "react-native";
+import { Pressable, Image, View, Modal } from "react-native";
 import styles from "./styles";
 import { useDispatch } from "react-redux";
 import { CLEAR_MODAL_DATA } from "../../constants";
-import GifImage from '@lowkey/react-native-gif';
 import Icon from 'react-native-vector-icons/Entypo';
 
 
@@ -21,7 +20,7 @@ const GifModal = (props) => {
                     }}>
                     <Icon name="cross" size={35} color={"#A6A6A6"} />
                 </Pressable>
-                <GifImage
+                <Image
                     resizeMode='contain'
                     style={styles.image}
                     source={{ uri: props.modalData }}

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 const InitialScreen = (props) => {
     const userDetails = useSelector(state => state.userDetails);
     const loggedIn = userDetails.isLoggedIn;
-    console.log(":::::: loggedIn", loggedIn)
     return <React.Fragment>
         <StatusBar backgroundColor={"#000"} />
         <SafeAreaView style={styles.container}>

@@ -4,7 +4,6 @@ import { Pressable, Text, View, Image, FlatList } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles";
-import GifImage from '@lowkey/react-native-gif';
 import { SAVE_MODAL_DATA } from "../../constants";
 
 
@@ -17,7 +16,7 @@ const TrendingGifs = (props) => {
             onPress={() => {
                 dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.original.url })
             }}>
-            <GifImage
+            <Image
                 resizeMode='contain'
                 style={styles.image}
                 source={{ uri: image }}

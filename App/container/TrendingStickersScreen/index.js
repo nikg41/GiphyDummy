@@ -1,10 +1,9 @@
 import { isEmpty } from "ramda";
 import React, { useEffect, useState } from "react";
-import { Pressable, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator, BackHandler } from "react-native";
+import { Pressable, Image, View, SafeAreaView, FlatList, StatusBar, ActivityIndicator, BackHandler } from "react-native";
 import { BASE_URL, API_KEY } from "../../Config";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles";
-import GifImage from '@lowkey/react-native-gif';
 import { SAVE_TRENDING_MORE_STICKERS, SAVE_MODAL_DATA, CLEAR_TRENDING_MORE_STICKERS } from "../../constants";
 import Header from "../../components/Header";
 import GifModal from "../../components/GifModal";
@@ -58,7 +57,7 @@ const TrendingStickersScreen = (props) => {
             onPress={() => {
                 dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.original.url })
             }}>
-            <GifImage
+            <Image
                 resizeMode='contain'
                 style={styles.image}
                 source={{ uri: image }}
@@ -67,8 +66,9 @@ const TrendingStickersScreen = (props) => {
     }
 
     return <React.Fragment>
-        <StatusBar backgroundColor={"#000"} />
+        <SafeAreaView style={styles.safeViewTop} />
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={"#000"} />
             <Header
                 title={"Trending Stickers"}
                 onBackPress={() => onBackPress()} />

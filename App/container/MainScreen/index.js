@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, StatusBar, ActivityIndicator, BackHandler } from "react-native";
+import { SafeAreaView, Text, View, StatusBar, ActivityIndicator, BackHandler, Pressable } from "react-native";
 import styles from "./styles";
 import { BASE_URL, API_KEY } from "../../Config";
 import axios from "axios";
-import { SAVE_TRENDING_DATA } from "../../constants";
+import { LOGOUT, SAVE_TRENDING_DATA } from "../../constants";
 
 import { useDispatch, useSelector } from "react-redux";
 import TrendingGifs from "../../components/TrendingGifs";
@@ -86,6 +86,16 @@ const MainScreen = (props) => {
                 modalData={modalData}
                 isVisible={isVisible}
             />}
+            <View style={styles.buttonView}>
+                <Pressable
+                    onPress={() => {
+                        dispatch({ type: LOGOUT })
+                        props.navigation.navigate("SignInScreen")
+                    }}
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>{"Logout"}</Text>
+                </Pressable>
+            </View>
         </SafeAreaView>
     </React.Fragment>
 };
