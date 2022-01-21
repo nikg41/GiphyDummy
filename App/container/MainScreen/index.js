@@ -22,7 +22,7 @@ const MainScreen = (props) => {
             const response = await axios.get(`${BASE_URL}gifs/trending`, {
                 "params": {
                     "api_key": API_KEY,
-                    "limit": 15
+                    "limit": 20
                 },
             });;
 
@@ -45,7 +45,8 @@ const MainScreen = (props) => {
                 title={"Giphy"}
                 onBackPress={() => props.navigation.navigate("InitialScreen")} />
             <View style={{ margin: 20 }}>
-                <TrendingGifs />
+                <TrendingGifs
+                    onMorePress={() => props.navigation.navigate("TrendingGifScreen")} />
             </View>
             {isLoading ? (
                 <View style={styles.activityIndicator}>

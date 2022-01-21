@@ -12,15 +12,15 @@ const TrendingGifs = (props) => {
     const trending = useSelector(state => state.giphyData.trendingData);
     const dispatch = useDispatch();
     const renderItem = (gif) => {
-        let image = gif.images.original.url.split("?");
+        let image = gif.images.original.url;
         return <Pressable
             onPress={() => {
-                dispatch({ type: SAVE_MODAL_DATA, payload: image[0] })
+                dispatch({ type: SAVE_MODAL_DATA, payload: image })
             }}>
             <GifImage
                 resizeMode='contain'
                 style={styles.image}
-                source={{ uri: image[0] }}
+                source={{ uri: image }}
             />
         </Pressable>
     }
@@ -30,7 +30,9 @@ const TrendingGifs = (props) => {
                 <Icon name="chart-line-variant" size={22} color={"#59C6FA"} />
                 <Text style={styles.headerTitle}>Trending</Text>
             </View>
-            <Pressable style={{ flexDirection: "row" }}>
+            <Pressable
+                style={{ flexDirection: "row" }}
+                onPress={() => props.onMorePress()}>
                 <Text style={styles.more}>{"More gifs"}</Text>
                 <Icon name="chevron-right" size={22} color={"#A6A6A6"} />
             </Pressable>

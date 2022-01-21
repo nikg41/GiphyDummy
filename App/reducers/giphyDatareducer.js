@@ -1,13 +1,15 @@
 import {
     SAVE_TRENDING_DATA,
     SAVE_MODAL_DATA,
-    CLEAR_MODAL_DATA
+    CLEAR_MODAL_DATA,
+    SAVE_TRENDING_MORE_DATA
 } from '../constants';
 
 const initialState = {
-    trendingData: "",
+    trendingData: {},
     modalData: "",
-    isVisible: false
+    isVisible: false,
+    trendingMoreData: {}
 };
 const giphyDatareducer = (state = initialState, action) => {
     switch (action.type) {
@@ -15,6 +17,11 @@ const giphyDatareducer = (state = initialState, action) => {
             return {
                 ...state,
                 trendingData: action.payload
+            };
+        case SAVE_TRENDING_MORE_DATA:
+            return {
+                ...state,
+                trendingMoreData: action.payload
             };
         case SAVE_MODAL_DATA:
             return {
