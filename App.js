@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStack } from './App/index';
+import { RootStack, TabNavigator } from './App/index';
+import { useSelector } from 'react-redux';
 
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  let loggedIn = useSelector(state => state.userDetails.isLoggedIn)
   return (
     <NavigationContainer>
-      <RootStack />
+      {loggedIn ? <TabNavigator /> : <RootStack />}
+
     </NavigationContainer>
   );
 }

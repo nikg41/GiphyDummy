@@ -31,18 +31,25 @@ const HomeStack = () => {
 const TabNavigator = () => {
     return (
         <Tab.Navigator
+            initialRouteName='Home'
             tabBarOptions={{
                 activeTintColor: '#59C6FA',
-                inactiveTintColor: 'gray',
+                inactiveTintColor: '#59C6FA',
                 style: {
-                    backgroundColor: '#252525',//color you want to change
+                    backgroundColor: "#252525",
+                    elevation: 5,
+                    position: 'absolute',
+                },
+                tabStyle: {
+                    backgroundColor: "#252525",
+
                 }
             }}
             screenOptions={({ route }) => ({
                 headerShown: false,
-                animationEnabled: false,
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
+                    console.log("::::: route.name", route.name)
                     if (route.name === 'Home') {
                         iconName = focused
                             ? 'home'
@@ -77,10 +84,6 @@ function RootStack() {
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="OtpScreen" component={OtpScreen} />
-            <Stack.Screen name="MainScreen" component={TabNavigator} />
-            <Stack.Screen name="TrendingGifScreen" component={TrendingGifScreen} />
-            <Stack.Screen name="TrendingStickersScreen" component={TrendingStickersScreen} />
-
         </Stack.Navigator>
     );
 }

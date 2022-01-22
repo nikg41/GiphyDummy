@@ -9,7 +9,6 @@ const AccountScreen = (props) => {
     const dispatch = useDispatch();
     const userDetails = useSelector(state => state.userDetails);
     const email = userDetails.email;
-    console.log(":::::::: userDetails", userDetails)
     useEffect(() => {
         BackHandler.addEventListener("hardwareBackPress", () => { return true; });
         return () => {
@@ -30,6 +29,10 @@ const AccountScreen = (props) => {
             <View style={styles.buttonView}>
                 <Pressable
                     onPress={() => {
+                        props.navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'SignInScreen' }]
+                        })
                         dispatch({ type: LOGOUT })
                         props.navigation.navigate("SignInScreen")
                     }}
