@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: "center",
         backgroundColor: "#41414150",
+        alignItems: "center"
     },
 
     modalView: {
@@ -17,9 +18,6 @@ const styles = StyleSheet.create({
     image: {
         width: 300,
         height: 300,
-        borderWidth: 3,
-        marginHorizontal: 10,
-        borderRadius: 15,
         marginBottom: 20
     },
 

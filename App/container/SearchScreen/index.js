@@ -70,17 +70,17 @@ const SearchScreen = (props) => {
         setIsLoading(true);
         try {
             let configureObjects = [
-                axios.get(`${BASE_URL}gifs/trending`, {
+                axios.get(`${BASE_URL}gifs/search`, {
                     "params": {
                         "api_key": API_KEY,
-                        "limit": 10,
+                        "limit": 20,
                         "q": searchTerm,
                     },
                 }),
-                axios.get(`${BASE_URL}stickers/trending`, {
+                axios.get(`${BASE_URL}stickers/search`, {
                     "params": {
                         "api_key": API_KEY,
-                        "limit": 10,
+                        "limit": 20,
                         "q": searchTerm,
                     },
                 })
