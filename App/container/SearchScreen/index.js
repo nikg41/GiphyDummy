@@ -91,7 +91,6 @@ const SearchScreen = (props) => {
             ]
             const responses = await axios.all(configureObjects);
             const data = responses[0].data.data.concat(responses[1].data.data);
-            console.log(":::::: data", data)
             dispatch({ type: SAVE_SEARCH_DATA, payload: data })
             setIsLoading(false);
         } catch (error) {
@@ -150,7 +149,7 @@ const SearchScreen = (props) => {
         let image = gif.images.preview_gif.url;
         return <Pressable
             onPress={() => {
-                dispatch({ type: SAVE_MODAL_DATA, payload: image })
+                dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.fixed_height.url })
             }}>
             <Image
                 resizeMode='contain'
@@ -160,7 +159,6 @@ const SearchScreen = (props) => {
         </Pressable>
     }
 
-    console.log("::::: gifs", gifs)
 
     return <React.Fragment>
         <SafeAreaView style={styles.safeViewTop} />

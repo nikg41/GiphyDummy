@@ -31,3 +31,4 @@
 - Home tab contains trending gifs and stickers, On click of more button it supports Infinite scroll and pagination
 - Search Tab contains search bar where user can serach gifs and stickers
 - Account Tab is dummy screen for logout
+- Click on gif or sticker you can see modal of that particular gif or sticker
