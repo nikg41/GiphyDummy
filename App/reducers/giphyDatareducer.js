@@ -5,7 +5,9 @@ import {
     SAVE_TRENDING_MORE_DATA,
     CLEAR_TRENDING_MORE_DATA,
     SAVE_TRENDING_MORE_STICKERS,
-    CLEAR_TRENDING_MORE_STICKERS
+    CLEAR_TRENDING_MORE_STICKERS,
+    SAVE_SEARCH_DATA,
+    CLEAR_SEARCH_DATA
 } from '../constants';
 
 const initialState = {
@@ -14,7 +16,8 @@ const initialState = {
     modalData: "",
     isVisible: false,
     trendingMoreData: [],
-    trendingMoreStickers: []
+    trendingMoreStickers: [],
+    serachData: []
 };
 const giphyDatareducer = (state = initialState, action) => {
     switch (action.type) {
@@ -44,6 +47,17 @@ const giphyDatareducer = (state = initialState, action) => {
             return {
                 ...state,
                 trendingMoreStickers: []
+            };
+        case SAVE_SEARCH_DATA:
+            let serachData = state.serachData.concat(action.payload);
+            return {
+                ...state,
+                serachData: serachData
+            };
+        case CLEAR_SEARCH_DATA:
+            return {
+                ...state,
+                serachData: []
             };
         case SAVE_MODAL_DATA:
             return {

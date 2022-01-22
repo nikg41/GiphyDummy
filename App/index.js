@@ -10,7 +10,10 @@ import SignInScreen from './container/SignInScreen';
 import OtpScreen from "./container/OtpScreen";
 import AccountScreen from './container/AccountScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MIcon from 'react-native-vector-icons/MaterialIcons';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SearchScreen from './container/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,7 +36,7 @@ const TabNavigator = () => {
         <Tab.Navigator
             initialRouteName='Home'
             tabBarOptions={{
-                activeTintColor: '#59C6FA',
+                activeTintColor: '#1480B4',
                 inactiveTintColor: '#59C6FA',
                 style: {
                     backgroundColor: "#252525",
@@ -43,13 +46,12 @@ const TabNavigator = () => {
                 tabStyle: {
                     backgroundColor: "#252525",
 
-                }
+                },
             }}
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-                    console.log("::::: route.name", route.name)
                     if (route.name === 'Home') {
                         iconName = focused
                             ? 'home'
@@ -58,12 +60,17 @@ const TabNavigator = () => {
                         iconName = focused
                             ? 'account'
                             : 'account-outline';
+                    } else if (route.name === 'Search') {
+                        return <MIcon name={"search"} size={size} color={color} />
                     }
 
                     return <Icon name={iconName} size={size} color={color} />;
                 },
             })}>
             <Tab.Screen name="Home" component={HomeStack} />
+            <Tab.Screen
+                name="Search"
+                component={SearchScreen} />
             <Tab.Screen
                 name="Account"
                 component={AccountScreen} />

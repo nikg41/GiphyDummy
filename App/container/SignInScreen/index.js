@@ -42,7 +42,7 @@ const SignInScreen = (props) => {
                     email: email
                 }
             })
-            props.navigation.navigate('MainScreen');
+            // props.navigation.navigate('MainScreen');
             setPassword('');
         }
         else {

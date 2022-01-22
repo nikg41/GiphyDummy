@@ -37,7 +37,6 @@ const OtpScreen = (props) => {
     const handleNavigation = () => {
         if (!isEmpty(otp)) {
             dispatch({ type: SAVE_LOGIN })
-            props.navigation.navigate('MainScreen')
         }
     }
 

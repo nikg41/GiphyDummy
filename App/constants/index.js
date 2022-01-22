@@ -8,3 +8,5 @@ export const CLEAR_MODAL_DATA = 'CLEAR_MODAL_DATA';
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_LOGIN = 'SAVE_LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const SAVE_SEARCH_DATA = 'SAVE_SEARCH_DATA';
+export const CLEAR_SEARCH_DATA = 'CLEAR_SEARCH_DATA';

@@ -29,12 +29,7 @@ const AccountScreen = (props) => {
             <View style={styles.buttonView}>
                 <Pressable
                     onPress={() => {
-                        props.navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'SignInScreen' }]
-                        })
                         dispatch({ type: LOGOUT })
-                        props.navigation.navigate("SignInScreen")
                     }}
                     style={styles.button}>
                     <Icon name={"logout"} size={20} color={"#DFDFDF"} />
