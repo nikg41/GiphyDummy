@@ -25,7 +25,7 @@ const SearchScreen = (props) => {
     const dispatch = useDispatch();
     const [serachText, setSearchText] = useState("");
     const [searchData, setSearchData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('')
+    const [gifs, setGifs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const modalData = useSelector(state => state.giphyData.modalData);
     const isVisible = useSelector(state => state.giphyData.isVisible);
@@ -66,7 +66,11 @@ const SearchScreen = (props) => {
         return () => clearTimeout(delayDebounceFn)
     }, [serachText]);
 
-    const getSearchData = async () => {
+    useEffect(() => {
+        setGifs(searchGifs)
+    }, [searchGifs])
+
+    const getSearchData = async (name) => {
         setIsLoading(true);
         try {
             let configureObjects = [
@@ -74,19 +78,20 @@ const SearchScreen = (props) => {
                     "params": {
                         "api_key": API_KEY,
                         "limit": 20,
-                        "q": searchTerm,
+                        "q": name,
                     },
                 }),
                 axios.get(`${BASE_URL}stickers/search`, {
                     "params": {
                         "api_key": API_KEY,
                         "limit": 20,
-                        "q": searchTerm,
+                        "q": name,
                     },
                 })
             ]
             const responses = await axios.all(configureObjects);
             const data = responses[0].data.data.concat(responses[1].data.data);
+            console.log(":::::: data", data)
             dispatch({ type: SAVE_SEARCH_DATA, payload: data })
             setIsLoading(false);
         } catch (error) {
@@ -98,8 +103,7 @@ const SearchScreen = (props) => {
     const onSearcItemSelect = (name) => {
         setSearchData([]);
         setSearchText('');
-        setSearchTerm(name);
-        getSearchData()
+        getSearchData(name)
         dispatch({ type: CLEAR_SEARCH_DATA })
     }
 
@@ -156,6 +160,8 @@ const SearchScreen = (props) => {
         </Pressable>
     }
 
+    console.log("::::: gifs", gifs)
+
     return <React.Fragment>
         <SafeAreaView style={styles.safeViewTop} />
         <SafeAreaView style={styles.container}>
@@ -175,7 +181,7 @@ const SearchScreen = (props) => {
                 <FlatList
                     style={styles.flatListStyle}
                     showsHorizontalScrollIndicator={false}
-                    data={!isEmpty(searchGifs) ? searchGifs : []}
+                    data={!isEmpty(gifs) ? gifs : []}
                     renderItem={({ item, index }) => renderItem(item)}
                     numColumns={3}
                     keyExtractor={(item, index) => item.id + index}

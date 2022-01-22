@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#F1F1F1",
 
         position: "absolute",
-        top: 70,
+        top: 45,
         width: "100%",
         height: 200,
         zIndex: Platform.OS === "ios" ? 2 : 1,
