@@ -54,7 +54,7 @@ const TrendingGifScreen = (props) => {
         let image = gif.images.preview_gif.url;
         return <Pressable
             onPress={() => {
-                dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.original.url })
+                dispatch({ type: SAVE_MODAL_DATA, payload: image })
             }}>
             <Image
                 resizeMode='contain'
@@ -67,7 +67,7 @@ const TrendingGifScreen = (props) => {
     return <React.Fragment>
         <SafeAreaView style={styles.safeViewTop} />
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={"#000"} />
+            <StatusBar backgroundColor={"#252525"} />
             <Header
                 title={"Trending Gifs"}
                 onBackPress={() => onBackPress()} />

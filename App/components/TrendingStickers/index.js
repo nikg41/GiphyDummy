@@ -12,9 +12,10 @@ const TrendingStickers = (props) => {
     const dispatch = useDispatch();
     const renderItem = (gif) => {
         let image = gif.images.preview_gif.url;
+
         return <Pressable
             onPress={() => {
-                dispatch({ type: SAVE_MODAL_DATA, payload: gif.images.original.url })
+                dispatch({ type: SAVE_MODAL_DATA, payload: image })
             }}>
             <Image
                 resizeMode='contain'

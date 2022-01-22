@@ -7,7 +7,7 @@ import AndroidStatusBar from "../../components/AndroidStatusBar";
 import Icons from "react-native-vector-icons/MaterialCommunityIcons"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { isEmpty } from "ramda";
-import { SAVE_LOGIN } from "../../constants";
+import { SAVE_LOGIN, SAVE_EMAIL } from "../../constants";
 import { useDispatch } from "react-redux";
 
 const EMAIL_PATTERN = new RegExp('^[a-z0-9A-Z]+@[a-z]+\.[a-z]{2,3}$');
@@ -37,6 +37,11 @@ const SignInScreen = (props) => {
         if (!isEmpty(email.trim()) && !isEmpty(password) && isEmailValid
             && isPasswordvalid) {
             dispatch({ type: SAVE_LOGIN })
+            dispatch({
+                type: SAVE_EMAIL, payload: {
+                    email: email
+                }
+            })
             props.navigation.navigate('MainScreen');
             setPassword('');
         }

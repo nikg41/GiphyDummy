@@ -3,7 +3,7 @@ import { SafeAreaView, Text, View, StatusBar, ActivityIndicator, BackHandler, Pr
 import styles from "./styles";
 import { BASE_URL, API_KEY } from "../../Config";
 import axios from "axios";
-import { LOGOUT, SAVE_TRENDING_DATA } from "../../constants";
+import { SAVE_TRENDING_DATA } from "../../constants";
 
 import { useDispatch, useSelector } from "react-redux";
 import TrendingGifs from "../../components/TrendingGifs";
@@ -16,10 +16,6 @@ const MainScreen = (props) => {
 
     const modalData = useSelector(state => state.giphyData.modalData);
     const isVisible = useSelector(state => state.giphyData.isVisible);
-    const userDetails = useSelector(state => state.userDetails);
-    const loggedIn = userDetails.isLoggedIn;
-
-    console.log(":::::: loggedIn", loggedIn)
 
     const getTrendingGifs = async () => {
         setIsLoading(true);
@@ -65,7 +61,7 @@ const MainScreen = (props) => {
     return <React.Fragment>
         <SafeAreaView style={styles.safeViewTop} />
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor={"#000"} />
+            <StatusBar backgroundColor={"#252525"} />
             <Header
                 title={"Giphy"}
                 isBackVisible={false}
@@ -86,16 +82,6 @@ const MainScreen = (props) => {
                 modalData={modalData}
                 isVisible={isVisible}
             />}
-            <View style={styles.buttonView}>
-                <Pressable
-                    onPress={() => {
-                        dispatch({ type: LOGOUT })
-                        props.navigation.navigate("SignInScreen")
-                    }}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>{"Logout"}</Text>
-                </Pressable>
-            </View>
         </SafeAreaView>
     </React.Fragment>
 };

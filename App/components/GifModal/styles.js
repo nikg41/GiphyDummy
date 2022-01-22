@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     modalView: {
         paddingVertical: 10,
         paddingHorizontal: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "#5C5959",
         borderRadius: 25,
     },
     image: {
