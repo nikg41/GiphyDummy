@@ -7,7 +7,8 @@ import {
     SAVE_TRENDING_MORE_STICKERS,
     CLEAR_TRENDING_MORE_STICKERS,
     SAVE_SEARCH_DATA,
-    CLEAR_SEARCH_DATA
+    CLEAR_SEARCH_DATA,
+    CLEAR_DATA
 } from '../constants';
 
 const initialState = {
@@ -71,6 +72,10 @@ const giphyDatareducer = (state = initialState, action) => {
                 modalData: "",
                 isVisible: false
             };
+        case CLEAR_DATA:
+            return {
+                ...initialState
+            }
         default:
             return state;
     }

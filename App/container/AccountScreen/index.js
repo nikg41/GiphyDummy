@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { SafeAreaView, Text, View, StatusBar, BackHandler, Pressable } from "react-native";
 import styles from "./styles";
-import { LOGOUT } from "../../constants";
+import { LOGOUT, CLEAR_DATA } from "../../constants";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
@@ -30,6 +30,7 @@ const AccountScreen = (props) => {
                 <Pressable
                     onPress={() => {
                         dispatch({ type: LOGOUT })
+                        dispatch({ type: CLEAR_DATA })
                     }}
                     style={styles.button}>
                     <Icon name={"logout"} size={20} color={"#DFDFDF"} />

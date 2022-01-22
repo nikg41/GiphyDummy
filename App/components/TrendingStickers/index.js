@@ -24,6 +24,10 @@ const TrendingStickers = (props) => {
             />
         </Pressable>
     }
+    if (isEmpty(trendingStickers)) {
+        return null
+    }
+
     return <View>
         <View style={styles.container}>
             <View style={{ flexDirection: "row" }}>

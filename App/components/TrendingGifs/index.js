@@ -23,6 +23,9 @@ const TrendingGifs = (props) => {
             />
         </Pressable>
     }
+    if (isEmpty(trending)) {
+        return null
+    }
     return <View>
         <View style={styles.container}>
             <View style={{ flexDirection: "row" }}>
